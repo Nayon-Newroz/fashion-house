@@ -44,8 +44,6 @@ export default function MyDrawer() {
   const [activeItem, setActiveItem] = useState("");
   const [dense, setDense] = React.useState(true);
 
- 
-
   const [mensMenu, setMensMenu] = useState([
     { title: "Men's Short Sleeve", total: 3 },
     { title: "Men's Full Sleeve", total: 3 },
@@ -110,7 +108,7 @@ export default function MyDrawer() {
             fontFamily: "Updock",
           }}
         >
-          Fashion House
+          Xaama
           <IconButton
             onClick={toggleDrawer(anchor, false)}
             style={{ position: "absolute", right: 9, top: 2 }}

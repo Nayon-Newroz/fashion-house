@@ -373,7 +373,7 @@ const Home = () => {
               fontFamily: "Updock",
             }}
           >
-            Fashion House
+            Xaama
           </Typography>
           <Grid container alignItems="center" spacing={3}>
             <Grid item>

@@ -18,6 +18,9 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import FormControl from "@mui/material/FormControl";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
 
 import { CartContext } from "../context/CartContext";
 import { useHistory } from "react-router-dom";
@@ -172,7 +175,7 @@ export default function PrimarySearchAppBar() {
       <AppBar
         position="static"
         style={{
-          background: "#fff", 
+          background: "#fff",
           boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
         }}
       >
@@ -199,7 +202,7 @@ export default function PrimarySearchAppBar() {
             }}
             onClick={() => history.push("/")}
           >
-            Fashion House
+            Xaama
           </Typography>
           {/* <Search>
             <SearchIconWrapper>
@@ -211,6 +214,36 @@ export default function PrimarySearchAppBar() {
             />
           </Search> */}
           <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ flexGrow: 1 }}>
+            <FormControl
+              sx={{ m: 1, width: "650px" }}
+              variant="outlined"
+              size="small"
+            >
+              <OutlinedInput
+                id="outlined-adornment-password"
+                style={{ background: "white" }}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      style={{
+                        background: "#ff793f",
+                        borderRadius: "3px",
+                        position: "relative",
+                        left: "2px",
+                      }}
+                      aria-label="toggle password visibility"
+                      // onClick={handleClickShowPassword}
+                      // onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      <SearchIcon />
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+          </Box>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
               size="large"
@@ -218,8 +251,8 @@ export default function PrimarySearchAppBar() {
               color="inherit"
               onClick={() => history.push("/cart")}
             >
-              <Badge badgeContent={list.length} color="secondary">
-                <ShoppingCartIcon color="secondary" />
+              <Badge badgeContent={list.length} color="primary">
+                <ShoppingCartIcon color="primary" />
               </Badge>
             </IconButton>
             <IconButton
@@ -227,8 +260,8 @@ export default function PrimarySearchAppBar() {
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={0} color="secondary">
-                <NotificationsIcon color="secondary" />
+              <Badge badgeContent={0} color="primary">
+                <NotificationsIcon color="primary" />
               </Badge>
             </IconButton>
             <IconButton
@@ -240,7 +273,7 @@ export default function PrimarySearchAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle color="secondary" />
+              <AccountCircle color="primary" />
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
