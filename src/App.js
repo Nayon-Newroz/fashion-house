@@ -6,6 +6,14 @@ import { SnackbarProvider } from "notistack";
 import Slide from "@mui/material/Slide";
 import Home from "./pages/Home";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
+import Layout from "./pages/Layout";
 const theme = createTheme({
   palette: {
     primary: {
@@ -34,23 +42,28 @@ const theme = createTheme({
 
 function App() {
   return (
-    // <Container maxWidth="xl" style={{ padding: 0 }}>
-    <ThemeProvider theme={theme}>
-      <SnackbarProvider
-        maxSnack={1}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        TransitionComponent={Slide}
-      >
-        <CartContextProvider>
-          <Navigation />
-          {/* <Home /> */}
-        </CartContextProvider>
-      </SnackbarProvider>
-    </ThemeProvider>
-    // </Container>
+    <>
+      <Container maxWidth="xl" style={{ padding: 0 }}>
+        <Router>
+          <ThemeProvider theme={theme}>
+            <SnackbarProvider
+              maxSnack={1}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              TransitionComponent={Slide}
+            >
+              <CartContextProvider>
+              <Layout/>
+                {/* <Navigation /> */}
+                {/* <Home /> */}
+              </CartContextProvider>
+            </SnackbarProvider>
+          </ThemeProvider>
+        </Router>
+      </Container>
+    </>
   );
 }
 
