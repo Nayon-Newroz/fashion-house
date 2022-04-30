@@ -561,7 +561,7 @@ const Home = () => {
                     className={classes.cardButton}
                     // onClick={() => addNew(item)}
                   >
-                    See More
+                    Visit Here
                   </Button>
                 </div>
               </Grid>

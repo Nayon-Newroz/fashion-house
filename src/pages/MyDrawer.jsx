@@ -23,6 +23,7 @@ import Chip from "@mui/material/Chip";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import { makeStyles } from "@mui/styles";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import Sidebar from "./Sidebar";
 
 const useStyles = makeStyles({
   listItemStyle: {
@@ -118,118 +119,7 @@ export default function MyDrawer() {
         </Typography>
       </div>
 
-      <Typography variant="body1" color="primary">
-        Men's Clothings
-      </Typography>
-      <List dense={dense}>
-        {mensMenu?.map((item, i) => (
-          <ListItem
-            className={classes.listItemStyle}
-            key={i}
-            secondaryAction={
-              // <IconButton edge="end" aria-label="delete">
-              //   <DeleteIcon />
-              // </IconButton>
-              <Chip
-                label={item.total}
-                size="small"
-                color="primary"
-                variant="outlined"
-              />
-            }
-            onClick={() => setActiveItem(item.title)}
-          >
-            <ListItemText
-              className={activeItem === item.title ? classes.active : null}
-              primary={item.title}
-            />
-          </ListItem>
-        ))}
-      </List>
-      <Typography variant="body1" color="primary">
-        Women's Clothings
-      </Typography>
-      <List dense={dense}>
-        {womensMenu?.map((item, i) => (
-          <ListItem
-            className={classes.listItemStyle}
-            key={i}
-            secondaryAction={
-              // <IconButton edge="end" aria-label="delete">
-              //   <DeleteIcon />
-              // </IconButton>
-              <Chip
-                label={item.total}
-                size="small"
-                color="primary"
-                variant="outlined"
-              />
-            }
-            onClick={() => setActiveItem(item.title)}
-          >
-            <ListItemText
-              className={activeItem === item.title ? classes.active : null}
-              primary={item.title}
-            />
-          </ListItem>
-        ))}
-      </List>
-      <Typography variant="body1" color="primary">
-        Kid's Clothings
-      </Typography>
-      <List dense={dense}>
-        {kidsMenu?.map((item, i) => (
-          <ListItem
-            className={classes.listItemStyle}
-            key={i}
-            secondaryAction={
-              // <IconButton edge="end" aria-label="delete">
-              //   <DeleteIcon />
-              // </IconButton>
-              <Chip
-                label={item.total}
-                size="small"
-                color="primary"
-                variant="outlined"
-              />
-            }
-            onClick={() => setActiveItem(item.title)}
-          >
-            <ListItemText
-              className={activeItem === item.title ? classes.active : null}
-              primary={item.title}
-            />
-          </ListItem>
-        ))}
-      </List>
-      <Typography variant="body1" color="primary">
-        Sport's Clothings
-      </Typography>
-      <List dense={dense}>
-        {sportsMenu?.map((item, i) => (
-          <ListItem
-            className={classes.listItemStyle}
-            key={i}
-            secondaryAction={
-              // <IconButton edge="end" aria-label="delete">
-              //   <DeleteIcon />
-              // </IconButton>
-              <Chip
-                label={item.total}
-                size="small"
-                color="primary"
-                variant="outlined"
-              />
-            }
-            onClick={() => setActiveItem(item.title)}
-          >
-            <ListItemText
-              className={activeItem === item.title ? classes.active : null}
-              primary={item.title}
-            />
-          </ListItem>
-        ))}
-      </List>
+      <Sidebar />
     </Box>
   );
 

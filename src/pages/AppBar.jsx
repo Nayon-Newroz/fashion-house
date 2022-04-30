@@ -137,7 +137,7 @@ export default function PrimarySearchAppBar() {
           color="inherit"
           onClick={() => history.push("/cart")}
         >
-          <Badge badgeContent={list.length} color="secondary">
+          <Badge badgeContent={list.length} color="primary">
             <ShoppingCartIcon />
           </Badge>
         </IconButton>
@@ -149,7 +149,7 @@ export default function PrimarySearchAppBar() {
           aria-label="show 17 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="secondary">
+          <Badge badgeContent={17} color="primary">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -171,7 +171,7 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} style={{ maxWidth: "1920px" }}>
       <AppBar
         position="static"
         style={{
@@ -197,7 +197,7 @@ export default function PrimarySearchAppBar() {
             // sx={{ display: { xs: "none", sm: "block" } }}
             style={{
               cursor: "pointer",
-              color: "#F5B041",
+              color: "#154360",
               fontFamily: "Updock",
             }}
             onClick={() => history.push("/")}
@@ -222,22 +222,25 @@ export default function PrimarySearchAppBar() {
             >
               <OutlinedInput
                 id="outlined-adornment-password"
-                style={{ background: "white" }}
+                style={{ background: "white", borderRadius: "25px" }}
+                placeholder="Search here..."
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
                       style={{
-                        background: "#ff793f",
+                        background: "#F5B041",
                         borderRadius: "3px",
                         position: "relative",
                         left: "2px",
+                        width: "90px",
+                        borderRadius: "25px",
                       }}
                       aria-label="toggle password visibility"
                       // onClick={handleClickShowPassword}
                       // onMouseDown={handleMouseDownPassword}
                       edge="end"
                     >
-                      <SearchIcon />
+                      <SearchIcon size="large" style={{ color: "#fff" }} />
                     </IconButton>
                   </InputAdornment>
                 }
@@ -252,7 +255,7 @@ export default function PrimarySearchAppBar() {
               onClick={() => history.push("/cart")}
             >
               <Badge badgeContent={list.length} color="primary">
-                <ShoppingCartIcon color="primary" />
+                <ShoppingCartIcon color="info" />
               </Badge>
             </IconButton>
             <IconButton
@@ -261,7 +264,7 @@ export default function PrimarySearchAppBar() {
               color="inherit"
             >
               <Badge badgeContent={0} color="primary">
-                <NotificationsIcon color="primary" />
+                <NotificationsIcon color="info" />
               </Badge>
             </IconButton>
             <IconButton
@@ -273,7 +276,7 @@ export default function PrimarySearchAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle color="primary" />
+              <AccountCircle color="info" />
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>

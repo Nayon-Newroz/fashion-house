@@ -18,7 +18,8 @@ const theme = createTheme({
   palette: {
     primary: {
       // light: will be calculated from palette.primary.main,
-      main: "#ff793f",
+      main: "#F5B041",
+      // main: "#ff793f",
       // dark: will be calculated from palette.primary.main,
       contrastText: "#fff",
     },
@@ -28,6 +29,13 @@ const theme = createTheme({
       // dark: will be calculated from palette.primary.main,
       contrastText: "#fff",
     },
+    info: {
+      // light: will be calculated from palette.primary.main,
+      main: "#154360",
+      // dark: will be calculated from palette.primary.main,
+      contrastText: "#fff",
+    },
+     
   },
   typography: {
     fontFamily: [
@@ -55,7 +63,7 @@ function App() {
               TransitionComponent={Slide}
             >
               <CartContextProvider>
-              <Layout/>
+                <Layout />
                 {/* <Navigation /> */}
                 {/* <Home /> */}
               </CartContextProvider>

@@ -297,45 +297,42 @@ const Product = () => {
   };
   return (
     <div>
-      <Container maxWidth="lg">
-        <br />
-        <Grid container spacing={4}>
-          {data.map((item, i) => (
-            <Grid item xs={12} sm={4} md={3} lg={2.4} key={i}>
-              <div className={classes.card}>
-                <img
-                  src={item.img}
-                  alt=""
-                  height="90px"
-                  width="90px"
-                  style={{ display: "block", margin: "auto" }}
-                />
-                <h4 className={classes.cardTitle}>{item.title}</h4>
-                <p className={classes.productDetail}>{item.des}</p>
-                <Grid container justifyContent="center" alignItems="center">
-                  <StarIcon fontSize="12px" color="secondary" />
-                  <StarIcon fontSize="12px" color="secondary" />
-                  <StarIcon fontSize="12px" color="secondary" />
-                  <StarIcon fontSize="12px" color="secondary" />
-                  <StarIcon fontSize="12px" color="secondary" />
+      <Grid container rowSpacing={2} columnSpacing={0}>
+        {data.map((item, i) => (
+          <Grid item xs={12} sm={4} md={3} key={i}>
+            <div className={classes.card}>
+              <img
+                src={item.img}
+                alt=""
+                height="200px"
+                width="200px"
+                style={{ display: "block", margin: "auto" }}
+              />
+              <h4 className={classes.cardTitle}>{item.title}</h4>
+              <p className={classes.productDetail}>{item.des}</p>
+              <Grid container justifyContent="center" alignItems="center">
+                  <StarIcon fontSize="12px" color="primary" />
+                  <StarIcon fontSize="12px" color="primary" />
+                  <StarIcon fontSize="12px" color="primary" />
+                  <StarIcon fontSize="12px" color="primary" />
+                  <StarIcon fontSize="12px" color="primary" />
                 </Grid>
-                <p className={classes.priceStyle}>Tk {item.price}</p>
-                <Button
-                  variant="contained"
-                  // variant="outlined"
-                  disableElevation
-                  className={classes.cardButton}
-                  onClick={() => addNew(item)}
-                >
-                  Add To Cart
-                </Button>
-              </div>
-            </Grid>
-          ))}
-        </Grid>
-        <br />
-        <br />
-      </Container>
+              <p className={classes.priceStyle}>Tk {item.price}</p>
+              <Button
+                variant="contained"
+                // variant="outlined"
+                disableElevation
+                className={classes.cardButton}
+                onClick={() => addNew(item)}
+              >
+                Add To Cart
+              </Button>
+            </div>
+          </Grid>
+        ))}
+      </Grid>
+      <br />
+      <br />
     </div>
   );
 };

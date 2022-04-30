@@ -11,7 +11,9 @@ import CartItems from "./CartItems";
 import Product from "./Product";
 import Message from "./Message";
 import Home from "./Home";
+import Sidebar from "./Sidebar";
 import Navigation from "./Navigation";
+import Grid from "@mui/material/Grid";
 
 const Layout = () => {
   let location = useLocation();
@@ -28,7 +30,7 @@ const Layout = () => {
         <div
           style={{
             // overflow: "hidden",
-            position: "fixed",
+            position: "sticky",
             top: 0,
             width: "100%",
             zIndex: 100,
@@ -36,8 +38,24 @@ const Layout = () => {
         >
           <AppBar />
         </div>
-        <div style={{ marginTop: "80px" }}>
-          <Navigation />
+        <div style={{ marginTop: "10px" }}>
+          <Grid container>
+            <Grid item xs={2.5}>
+              {/* <div
+                style={{
+                  position: "fixed",
+                  top: 100,
+                  // width: "100%",
+                  // zIndex: 100,
+                }}
+              > */}
+              <Sidebar />
+              {/* </div> */}
+            </Grid>
+            <Grid item xs={9.5}>
+              <Navigation />
+            </Grid>
+          </Grid>
         </div>
       </>
     );
