@@ -14,10 +14,16 @@ import Home from "./Home";
 import Sidebar from "./Sidebar";
 import Navigation from "./Navigation";
 import Grid from "@mui/material/Grid";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Layout = () => {
+  const theme = useTheme();
   let location = useLocation();
   console.log("location.pathname", location.pathname);
+
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+  console.log("matches", matches);
   if (location.pathname === "/") {
     return (
       <>
@@ -40,19 +46,15 @@ const Layout = () => {
         </div>
         <div style={{ marginTop: "10px" }}>
           <Grid container>
-            <Grid item xs={2.5}>
-              {/* <div
-                style={{
-                  position: "fixed",
-                  top: 100,
-                  // width: "100%",
-                  // zIndex: 100,
-                }}
-              > */}
+            <Grid
+              item
+              xs={2.5}
+              md={2.5}
+              style={{ display: matches ? "none" : "" }}
+            >
               <Sidebar />
-              {/* </div> */}
             </Grid>
-            <Grid item xs={9.5}>
+            <Grid item xs={12} md={9.5}>
               <Navigation />
             </Grid>
           </Grid>

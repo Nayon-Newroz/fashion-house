@@ -39,6 +39,61 @@ import Iphone from "../assets/images/Iphone.png";
 import { Link } from "react-router-dom";
 import Container from "@mui/material/Container";
 const useStyles = makeStyles((theme) => ({
+  main: {
+    [theme.breakpoints.down("sm")]: {
+      // padding: "0px 20px",
+    },
+  },
+  topSection: {
+    height: "650px",
+    background:
+      "radial-gradient(circle, rgba(228,199,105,1) 0%, rgba(230,183,91,1) 99%)",
+    //  backgroundImage: `url(images/model1.png), radial-gradient(circle, rgba(228,199,105,1) 0%, rgba(230,183,91,1) 99%)`,
+    // backgroundRepeat: " no-repeat",
+    // backgroundPosition: "bottom",
+    [theme.breakpoints.down("sm")]: {
+      height: "100vh",
+    },
+  },
+  title1: {
+    fontSize: "60px",
+    color: "white",
+    fontWeight: 600,
+    marginTop: "70px",
+    textAlign: "center",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "45px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "30px",
+    },
+  },
+  topMenuStyle: {
+    width: "960px",
+    margin: "auto",
+    backgroundColor: "#2b2a29",
+    clipPath: "polygon(0 0, 100% 0, 96% 100%, 3% 100%)",
+    height: "auto",
+    padding: "20px 0px",
+    [theme.breakpoints.down("md")]: {
+      width: "100%",
+    },
+  },
+  searchBox: {
+    width: "450px",
+    [theme.breakpoints.down("md")]: {
+      width: "300px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+  searchBox2: {
+    display: "none",
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+    },
+  },
   topMenuItem: {
     fontSize: "15px",
     fontFamily: "Inter",
@@ -313,27 +368,9 @@ const Home = () => {
     { title: "Sports CLOTHING", image: "/images/sports.png" },
   ];
   return (
-    <>
-      <section
-        style={{
-          height: "650px",
-          background:
-            "radial-gradient(circle, rgba(228,199,105,1) 0%, rgba(230,183,91,1) 99%)",
-          //  backgroundImage: `url(images/model1.png), radial-gradient(circle, rgba(228,199,105,1) 0%, rgba(230,183,91,1) 99%)`,
-          // backgroundRepeat: " no-repeat",
-          // backgroundPosition: "bottom",
-        }}
-      >
-        <div
-          style={{
-            width: "960px",
-            margin: "auto",
-            backgroundColor: "#2b2a29",
-            clipPath: "polygon(0 0, 100% 0, 96% 100%, 3% 100%)",
-            height: "auto",
-            padding: "20px 0px",
-          }}
-        >
+    <div className={classes.main}>
+      <section className={classes.topSection}>
+        <div className={classes.topMenuStyle}>
           <Grid container spacing={2} justifyContent="center">
             <Grid item className={classes.topMenuItem}>
               Best Sellers
@@ -355,8 +392,8 @@ const Home = () => {
         <br />
         <div
           style={{
-            width: "960px",
-            margin: "auto",
+            // width: "960px",
+            // margin: "auto",
             // backgroundColor: "#2b2a29",
             height: "auto",
             padding: "20px 0px",
@@ -375,7 +412,12 @@ const Home = () => {
           >
             Xaama
           </Typography>
-          <Grid container alignItems="center" spacing={3}>
+          <Grid
+            container
+            justifyContent="center"
+            alignItems="center"
+            spacing={{ xs: 1, sm: 1, md: 1, lg: 3 }}
+          >
             <Grid item>
               <MyDrawer />
             </Grid>
@@ -421,12 +463,8 @@ const Home = () => {
                 </MenuItem>
               </Menu>
             </Grid>
-            <Grid item>
-              <FormControl
-                sx={{ m: 1, width: "450px" }}
-                variant="outlined"
-                size="small"
-              >
+            <Grid item className={classes.searchBox}>
+              <FormControl fullWidth variant="outlined" size="small">
                 <OutlinedInput
                   id="outlined-adornment-password"
                   style={{ background: "white" }}
@@ -487,6 +525,35 @@ const Home = () => {
               </Grid>
             </Grid>
           </Grid>
+          <div item className={classes.searchBox2}>
+            <FormControl fullWidth variant="outlined" size="small">
+              <OutlinedInput
+                id="outlined-adornment-password"
+                style={{ background: "white" }}
+                // type={values.showPassword ? "text" : "password"}
+                // value={values.password}
+                // onChange={handleChange("password")}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      style={{
+                        background: "#ff793f",
+                        borderRadius: "3px",
+                        position: "relative",
+                        left: "2px",
+                      }}
+                      aria-label="toggle password visibility"
+                      // onClick={handleClickShowPassword}
+                      // onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      <SearchIcon />
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+          </div>
           <div
             style={{
               textAlign: "center",
@@ -495,13 +562,8 @@ const Home = () => {
             <Typography
               variant="h2"
               component="div"
+              className={classes.title1}
               gutterBottom
-              style={{
-                color: "white",
-                fontWeight: 600,
-
-                marginTop: "70px",
-              }}
             >
               GET START
               <br /> YOUR FAVORITE SHOPING
@@ -571,7 +633,7 @@ const Home = () => {
           <br />
         </Container>
       </section>
-    </>
+    </div>
   );
 };
 

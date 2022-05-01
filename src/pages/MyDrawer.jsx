@@ -2,37 +2,29 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
-import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import FolderIcon from "@mui/icons-material/Folder";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Chip from "@mui/material/Chip";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
 import { makeStyles } from "@mui/styles";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Sidebar from "./Sidebar";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+  menuButtonStyle: {
+    color: "white",
+    fontSize: "60px",
+    [theme.breakpoints.down("sm")]: {
+      color: "#154360",
+      fontSize: "40px",
+    },
+  },
   listItemStyle: {
     cursor: "pointer",
   },
   active: {
     color: "#ff793f",
   },
-});
+}));
 
 export default function MyDrawer() {
   const classes = useStyles();
@@ -95,18 +87,17 @@ export default function MyDrawer() {
       //   onClick={toggleDrawer(anchor, false)}
       //   onKeyDown={toggleDrawer(anchor, false)}
     >
-      <br />
-      <br />
-      <div>
+      <div style={{ padding: "16px 0px 0px 8px" }}>
         <Typography
           variant="h4"
           component="div"
           gutterBottom
           style={{
             position: "relative",
-            color: "#ff793f",
+            color: "#154360",
             fontWeight: 600,
             fontFamily: "Updock",
+            margin: 0,
           }}
         >
           Xaama
@@ -128,7 +119,7 @@ export default function MyDrawer() {
       {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>
-            <MenuIcon style={{ color: "white", fontSize: "60px" }} />
+            <MenuIcon className={classes.menuButtonStyle} />
           </Button>
           <Drawer
             anchor={anchor}

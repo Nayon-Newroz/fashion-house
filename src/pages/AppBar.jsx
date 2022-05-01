@@ -21,51 +21,27 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
-
+import { makeStyles } from "@mui/styles";
 import { CartContext } from "../context/CartContext";
 import { useHistory } from "react-router-dom";
+import MyDrawer from "./MyDrawer";
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
+const useStyles = makeStyles((theme) => ({
+  searchButtonStyle: {
+    background: "#F5B041",
+    borderRadius: "3px",
+    position: "relative",
+    left: "2px",
+    width: "90px",
+    borderRadius: "25px",
+    [theme.breakpoints.down("lg")]: {
+      width: "60px",
     },
   },
 }));
 
 export default function PrimarySearchAppBar() {
+  const classes = useStyles();
   const { addList, list } = useContext(CartContext);
   let history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -138,7 +114,7 @@ export default function PrimarySearchAppBar() {
           onClick={() => history.push("/cart")}
         >
           <Badge badgeContent={list.length} color="primary">
-            <ShoppingCartIcon />
+            <ShoppingCartIcon color="info" />
           </Badge>
         </IconButton>
         <p>Messages</p>
@@ -150,7 +126,7 @@ export default function PrimarySearchAppBar() {
           color="inherit"
         >
           <Badge badgeContent={17} color="primary">
-            <NotificationsIcon />
+            <NotificationsIcon color="info" />
           </Badge>
         </IconButton>
         <p>Notifications</p>
@@ -163,7 +139,7 @@ export default function PrimarySearchAppBar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <AccountCircle color="info" />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -190,6 +166,7 @@ export default function PrimarySearchAppBar() {
           >
             <FlashOnIcon color="primary" />
           </IconButton> */}
+          <MyDrawer />
           <Typography
             variant="h4"
             noWrap
@@ -214,9 +191,10 @@ export default function PrimarySearchAppBar() {
             />
           </Search> */}
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ flexGrow: 1 }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" } }}>
             <FormControl
-              sx={{ m: 1, width: "650px" }}
+              // sx={{ m: 1, width: "650px" }}
+              fullWidth
               variant="outlined"
               size="small"
             >
@@ -227,14 +205,7 @@ export default function PrimarySearchAppBar() {
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
-                      style={{
-                        background: "#F5B041",
-                        borderRadius: "3px",
-                        position: "relative",
-                        left: "2px",
-                        width: "90px",
-                        borderRadius: "25px",
-                      }}
+                      className={classes.searchButtonStyle}
                       aria-label="toggle password visibility"
                       // onClick={handleClickShowPassword}
                       // onMouseDown={handleMouseDownPassword}
@@ -247,6 +218,7 @@ export default function PrimarySearchAppBar() {
               />
             </FormControl>
           </Box>
+          <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
               size="large"
@@ -296,8 +268,8 @@ export default function PrimarySearchAppBar() {
               color="inherit"
               onClick={() => history.push("/cart")}
             >
-              <Badge badgeContent={list.length} color="secondary">
-                <ShoppingCartIcon />
+              <Badge badgeContent={list.length} color="primary">
+                <ShoppingCartIcon color="info" />
               </Badge>
             </IconButton>
             <IconButton
@@ -305,8 +277,8 @@ export default function PrimarySearchAppBar() {
               aria-label="show 17 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={0} color="secondary">
-                <NotificationsIcon />
+              <Badge badgeContent={0} color="primary">
+                <NotificationsIcon color="info" />
               </Badge>
             </IconButton>
             <IconButton
@@ -318,10 +290,42 @@ export default function PrimarySearchAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <AccountCircle color="info" />
             </IconButton>
           </Box>
         </Toolbar>
+        <Box
+          style={{ paddingLeft: "16px", paddingRight: "16px" }}
+          sx={{ display: { xs: "block", sm: "none" } }}
+        >
+          <FormControl
+            // sx={{ m: 1, width: "650px" }}
+            fullWidth
+            variant="outlined"
+            size="small"
+          >
+            <OutlinedInput
+              id="outlined-adornment-password"
+              style={{ background: "white", borderRadius: "25px" }}
+              placeholder="Search here..."
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    className={classes.searchButtonStyle}
+                    aria-label="toggle password visibility"
+                    // onClick={handleClickShowPassword}
+                    // onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    <SearchIcon size="large" style={{ color: "#fff" }} />
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+          <br />
+          <br />
+        </Box>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}

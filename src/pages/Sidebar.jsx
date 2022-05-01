@@ -7,18 +7,51 @@ import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+  boxStyle: {
+    background: "#fff",
+    paddingTop: "10px",
+    paddingLeft: "10px",
+  },
+  categoryNameStyle: {
+    fontSize: "16px",
+  },
+
   listItemStyle: {
     cursor: "pointer",
+    "& .MuiTypography-root": {
+      [theme.breakpoints.down("lg")]: {
+        fontSize: "12px !important",
+      },
+    },
+    "& .MuiChip-root": {
+      [theme.breakpoints.down("lg")]: {
+        fontSize: "12px !important",
+        height: "20px",
+      },
+    },
+    "& .MuiChip-label": {
+      [theme.breakpoints.down("lg")]: {
+        paddingLeft: "6px !important",
+        paddingRight: "6px !important",
+      },
+    },
   },
   active: {
     color: "#ff793f",
+  },
+  chipStyle: {
+    "& .MuiChip-root": {
+      [theme.breakpoints.down("lg")]: {
+        fontSize: "12px !important",
+      },
+    },
   },
   chipActive: {
     border: "1px solid #ff793f !important",
     color: "#ff793f !important",
   },
-});
+}));
 
 export default function Sidebar() {
   const classes = useStyles();
@@ -64,12 +97,14 @@ export default function Sidebar() {
     { categoryName: "Sports Clothings", category: sportsMenu },
   ];
   return (
-    <Box style={{ background: "#fff", paddingLeft: "10px" }}>
-      <br />
-
+    <Box className={classes.boxStyle}>
       {menuData?.map((item, i) => (
-        <>
-          <Typography variant="body1" color="primary">
+        <div key={i}>
+          <Typography
+            variant="body1"
+            color="primary"
+            className={classes.categoryNameStyle}
+          >
             {item.categoryName}
           </Typography>
           <List dense={true}>
@@ -84,7 +119,8 @@ export default function Sidebar() {
                     color="primary"
                     variant="outlined"
                     className={
-                      activeItem === cat.title ? classes.chipActive : null
+                      (classes.chipStyle,
+                      activeItem === cat.title ? classes.chipActive : null)
                     }
                   />
                 }
@@ -97,7 +133,7 @@ export default function Sidebar() {
               </ListItem>
             ))}
           </List>
-        </>
+        </div>
       ))}
     </Box>
   );

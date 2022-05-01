@@ -34,6 +34,14 @@ const useStyles = makeStyles((theme) => ({
       width: "70%",
     },
   },
+  cardImg: {
+    height: "200px",
+    width: "200px",
+    [theme.breakpoints.down("lg")]: {
+      height: "150px",
+      width: "150px",
+    },
+  },
   cardButton: {
     textTransform: "none !important",
     borderRadius: "25px !important",
@@ -304,19 +312,18 @@ const Product = () => {
               <img
                 src={item.img}
                 alt=""
-                height="200px"
-                width="200px"
                 style={{ display: "block", margin: "auto" }}
+                className={classes.cardImg}
               />
               <h4 className={classes.cardTitle}>{item.title}</h4>
               <p className={classes.productDetail}>{item.des}</p>
               <Grid container justifyContent="center" alignItems="center">
-                  <StarIcon fontSize="12px" color="primary" />
-                  <StarIcon fontSize="12px" color="primary" />
-                  <StarIcon fontSize="12px" color="primary" />
-                  <StarIcon fontSize="12px" color="primary" />
-                  <StarIcon fontSize="12px" color="primary" />
-                </Grid>
+                <StarIcon fontSize="12px" color="primary" />
+                <StarIcon fontSize="12px" color="primary" />
+                <StarIcon fontSize="12px" color="primary" />
+                <StarIcon fontSize="12px" color="primary" />
+                <StarIcon fontSize="12px" color="primary" />
+              </Grid>
               <p className={classes.priceStyle}>Tk {item.price}</p>
               <Button
                 variant="contained"
