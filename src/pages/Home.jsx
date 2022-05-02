@@ -45,12 +45,21 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   topSection: {
-    height: "650px",
     background:
       "radial-gradient(circle, rgba(228,199,105,1) 0%, rgba(230,183,91,1) 99%)",
     //  backgroundImage: `url(images/model1.png), radial-gradient(circle, rgba(228,199,105,1) 0%, rgba(230,183,91,1) 99%)`,
     // backgroundRepeat: " no-repeat",
     // backgroundPosition: "bottom",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: "650px",
+    [theme.breakpoints.down("xl")]: {
+      height: "100vh",
+    },
+    [theme.breakpoints.down("lg")]: {
+      height: "650px",
+    },
     [theme.breakpoints.down("sm")]: {
       height: "100vh",
     },
@@ -59,18 +68,30 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "60px",
     color: "white",
     fontWeight: 600,
-    marginTop: "70px",
     textAlign: "center",
     [theme.breakpoints.down("md")]: {
       fontSize: "45px",
     },
     [theme.breakpoints.down("sm")]: {
-      fontSize: "30px",
+      fontSize: "24px",
+      marginBottom: "15px",
+    },
+  },
+  title2: {
+    fontSize: "60px",
+    color: "#154360",
+    fontWeight: 600,
+    textAlign: "center",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "45px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "24px",
     },
   },
   topMenuStyle: {
     width: "960px",
-    margin: "auto",
+    margin: "0 auto",
     backgroundColor: "#2b2a29",
     clipPath: "polygon(0 0, 100% 0, 96% 100%, 3% 100%)",
     height: "auto",
@@ -79,21 +100,27 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
     },
   },
+  middleStyle: {
+    height: "auto",
+    padding: "20px 0px",
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+  middleStyleForMobile: {
+    display: "none",
+    padding: "0px 15px 0px 5px",
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+    },
+  },
   searchBox: {
     width: "450px",
     [theme.breakpoints.down("md")]: {
       width: "300px",
     },
-    [theme.breakpoints.down("sm")]: {
-      display: "none",
-    },
   },
-  searchBox2: {
-    display: "none",
-    [theme.breakpoints.down("sm")]: {
-      display: "block",
-    },
-  },
+
   topMenuItem: {
     fontSize: "15px",
     fontFamily: "Inter",
@@ -101,6 +128,9 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       color: "#ff793f",
       cursor: "pointer",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "8px",
     },
   },
   appbarMenuItem: {
@@ -145,6 +175,9 @@ const useStyles = makeStyles((theme) => ({
   cardTitle: {
     marginBottom: "5px",
     color: "#154360",
+  },
+  brStyle: {
+    // display:'none'
   },
 }));
 
@@ -389,16 +422,8 @@ const Home = () => {
             </Grid>
           </Grid>
         </div>
-        <br />
-        <div
-          style={{
-            // width: "960px",
-            // margin: "auto",
-            // backgroundColor: "#2b2a29",
-            height: "auto",
-            padding: "20px 0px",
-          }}
-        >
+
+        <div className={classes.middleStyle}>
           <Typography
             variant="h4"
             component="div"
@@ -475,7 +500,7 @@ const Home = () => {
                     <InputAdornment position="end">
                       <IconButton
                         style={{
-                          background: "#ff793f",
+                          background: "#F5B041",
                           borderRadius: "3px",
                           position: "relative",
                           left: "2px",
@@ -501,10 +526,10 @@ const Home = () => {
               >
                 <Grid item>
                   <Badge badgeContent={1} color="primary">
-                    <ShoppingCartIcon />
+                    <ShoppingCartIcon style={{ fontSize: "35px" }} />
                   </Badge>
                 </Grid>
-                <Grid item style={{ paddingTop: "5px" }}>
+                <Grid item style={{ paddingTop: "5px", fontSize: "24px" }}>
                   CART
                 </Grid>
               </Grid>
@@ -517,19 +542,63 @@ const Home = () => {
                 className={classes.appbarMenuItem}
               >
                 <Grid item>
-                  <PersonIcon />
+                  <PersonIcon style={{ fontSize: "40px" }} />
                 </Grid>
-                <Grid item style={{ paddingTop: "5px" }}>
+                <Grid item style={{ paddingTop: "5px", fontSize: "24px" }}>
                   PROFILE
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
-          <div item className={classes.searchBox2}>
+        </div>
+        <div item className={classes.middleStyleForMobile}>
+          <Grid
+            container
+            justifyContent="space-between"
+            alignItems="center"
+            spacing={{ xs: 1, sm: 1, md: 1, lg: 3 }}
+          >
+            <Grid item xs={9}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <MyDrawer />
+                <Typography
+                  variant="h4"
+                  style={{
+                    color: "white",
+                    fontWeight: 600,
+                    textAlign: "center",
+                    fontFamily: "Updock",
+                  }}
+                >
+                  Xaama
+                </Typography>
+              </div>
+            </Grid>
+            <Grid item xs={3}>
+              <Grid
+                item
+                container
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <Grid item>
+                  <Badge badgeContent={1} color="primary">
+                    <ShoppingCartIcon
+                      style={{ color: "#fff", fontSize: "30px" }}
+                    />
+                  </Badge>
+                </Grid>
+                <Grid item>
+                  <PersonIcon style={{ color: "#fff", fontSize: "35px" }} />
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+          <div style={{ marginTop: "5px", padding: "0px 5px 0px 15px" }}>
             <FormControl fullWidth variant="outlined" size="small">
               <OutlinedInput
                 id="outlined-adornment-password"
-                style={{ background: "white" }}
+                style={{ background: "white", borderRadius: "25px" }}
                 // type={values.showPassword ? "text" : "password"}
                 // value={values.password}
                 // onChange={handleChange("password")}
@@ -537,10 +606,11 @@ const Home = () => {
                   <InputAdornment position="end">
                     <IconButton
                       style={{
-                        background: "#ff793f",
+                        background: "#F5B041",
                         borderRadius: "3px",
                         position: "relative",
                         left: "2px",
+                        borderRadius: "25px",
                       }}
                       aria-label="toggle password visibility"
                       // onClick={handleClickShowPassword}
@@ -554,36 +624,39 @@ const Home = () => {
               />
             </FormControl>
           </div>
-          <div
-            style={{
-              textAlign: "center",
-            }}
-          >
-            <Typography
-              variant="h2"
-              component="div"
-              className={classes.title1}
-              gutterBottom
-            >
-              GET START
-              <br /> YOUR FAVORITE SHOPING
-            </Typography>
-            <Button
-              variant="contained"
-              disableElevation
-              style={{
-                background: "#2b2a29",
-                fontFamily: "Inter",
-                fontSize: "16px",
-                padding: "8px 40px",
-              }}
-              component={Link}
-              to="/products"
-            >
-              Start Shoping
-            </Button>
-          </div>
         </div>
+        <div
+          style={{
+            textAlign: "center",
+          }}
+        >
+          <Typography
+            variant="h2"
+            component="div"
+            className={classes.title1}
+            gutterBottom
+          >
+            GET START
+            <br /> YOUR FAVORITE SHOPING
+          </Typography>
+          <Button
+            variant="contained"
+            disableElevation
+            style={{
+              background: "#2b2a29",
+              fontFamily: "Inter",
+              fontSize: "16px",
+              padding: "8px 40px",
+            }}
+            component={Link}
+            to="/products"
+          >
+            Start Shoping
+          </Button>
+        </div>
+        <div></div>
+        {/* <div></div>
+        <div></div> */}
       </section>
       <section>
         <Typography
@@ -595,8 +668,9 @@ const Home = () => {
             textAlign: "center",
             marginTop: "50px",
           }}
+          className={classes.title2}
         >
-          CHOOSE YOUR FAVORITE THINGS
+          CHOOSE YOUR FAVORITE <br className={classes.brStyle} /> THINGS
         </Typography>
         <Container maxWidth="lg">
           <br />

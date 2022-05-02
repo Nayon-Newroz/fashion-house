@@ -1,16 +1,6 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import AppBar from "./AppBar";
-import CartItems from "./CartItems";
-import Product from "./Product";
-import Message from "./Message";
-import Home from "./Home";
 import Sidebar from "./Sidebar";
 import Navigation from "./Navigation";
 import Grid from "@mui/material/Grid";
@@ -19,8 +9,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Layout = () => {
   const theme = useTheme();
-  let location = useLocation();
-  console.log("location.pathname", location.pathname);
+  let location = useLocation(); 
 
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   console.log("matches", matches);

@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Sidebar from "./Sidebar";
+import { useLocation } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   menuButtonStyle: {
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MyDrawer() {
   const classes = useStyles();
+  let location = useLocation();
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -119,7 +121,10 @@ export default function MyDrawer() {
       {["left"].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>
-            <MenuIcon className={classes.menuButtonStyle} />
+            <MenuIcon
+              className={classes.menuButtonStyle}
+              style={{ color: location.pathname === "/" ? "#fff" : "" }}
+            />
           </Button>
           <Drawer
             anchor={anchor}
