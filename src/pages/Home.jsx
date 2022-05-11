@@ -65,28 +65,28 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   title1: {
-    fontSize: "60px",
+    fontSize: "60px !important",
     color: "white",
     fontWeight: 600,
     textAlign: "center",
     [theme.breakpoints.down("md")]: {
-      fontSize: "45px",
+      fontSize: "45px !important",
     },
     [theme.breakpoints.down("sm")]: {
-      fontSize: "24px",
+      fontSize: "24px !important",
       marginBottom: "15px",
     },
   },
   title2: {
-    fontSize: "60px",
+    fontSize: "60px !important",
     color: "#154360",
     fontWeight: 600,
     textAlign: "center",
     [theme.breakpoints.down("md")]: {
-      fontSize: "45px",
+      fontSize: "45px !important",
     },
     [theme.breakpoints.down("sm")]: {
-      fontSize: "24px",
+      fontSize: "24px !important",
     },
   },
   topMenuStyle: {
@@ -191,209 +191,7 @@ const Home = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const data = [
-    {
-      id: 1,
-      title: "Hp Latop",
-      price: 55000,
-      quantity: 1,
-      des: " There are many variations of items.",
 
-      img: Laptop,
-    },
-    {
-      id: 2,
-      title: "Samsung Phone",
-      price: 70000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Samsung,
-    },
-    {
-      id: 3,
-      title: "Ipad Pro",
-      price: 60000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Ipad,
-    },
-    {
-      id: 4,
-      title: "Desktop Computer",
-      price: 80000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Desktop,
-    },
-    {
-      id: 5,
-      title: "Iphone 13 pro",
-      price: 120000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Iphone,
-    },
-    {
-      id: 6,
-      title: "Hp Latop",
-      price: 55000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Laptop,
-    },
-    {
-      id: 7,
-      title: "Samsung Phone",
-      price: 70000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Samsung,
-    },
-    {
-      id: 8,
-      title: "Ipad Pro",
-      price: 60000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Ipad,
-    },
-    {
-      id: 9,
-      title: "Desktop Computer",
-      price: 80000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Desktop,
-    },
-    {
-      id: 10,
-      title: "Iphone 13 pro",
-      price: 120000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Iphone,
-    },
-    {
-      id: 11,
-      title: "Hp Latop",
-      price: 55000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Laptop,
-    },
-    {
-      id: 22,
-      title: "Samsung Phone",
-      price: 70000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Samsung,
-    },
-    {
-      id: 13,
-      title: "Ipad Pro",
-      price: 60000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Ipad,
-    },
-    {
-      id: 14,
-      title: "Desktop Computer",
-      price: 80000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Desktop,
-    },
-    {
-      id: 15,
-      title: "Iphone 13 pro",
-      price: 120000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Iphone,
-    },
-    {
-      id: 16,
-      title: "Hp Latop",
-      price: 55000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Laptop,
-    },
-    {
-      id: 17,
-      title: "Samsung Phone",
-      price: 70000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Samsung,
-    },
-    {
-      id: 18,
-      title: "Ipad Pro",
-      price: 60000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Ipad,
-    },
-    {
-      id: 19,
-      title: "Desktop Computer",
-      price: 80000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Desktop,
-    },
-    {
-      id: 20,
-      title: "Iphone 13 pro",
-      price: 120000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Iphone,
-    },
-    {
-      id: 21,
-      title: "Hp Latop",
-      price: 55000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Laptop,
-    },
-    {
-      id: 22,
-      title: "Samsung Phone",
-      price: 70000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Samsung,
-    },
-    {
-      id: 23,
-      title: "Ipad Pro",
-      price: 60000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Ipad,
-    },
-    {
-      id: 24,
-      title: "Desktop Computer",
-      price: 80000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Desktop,
-    },
-    {
-      id: 25,
-      title: "Iphone 13 pro",
-      price: 120000,
-      quantity: 1,
-      des: " There are many variations of items.",
-      img: Iphone,
-    },
-  ];
   const menuCatrgory = [
     { title: "MEN'S CLOTHING", image: "/images/men.png" },
     { title: "WOMEN'S CLOTHING", image: "/images/women.png" },
@@ -630,12 +428,7 @@ const Home = () => {
             textAlign: "center",
           }}
         >
-          <Typography
-            variant="h2"
-            component="div"
-            className={classes.title1}
-            gutterBottom
-          >
+          <Typography component="div" className={classes.title1} gutterBottom>
             GET START
             <br /> YOUR FAVORITE SHOPING
           </Typography>
@@ -660,7 +453,6 @@ const Home = () => {
       </section>
       <section>
         <Typography
-          variant="h3"
           component="div"
           gutterBottom
           style={{

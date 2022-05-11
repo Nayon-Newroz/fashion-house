@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   tableBodyStyle: {
     "& td": {
       [theme.breakpoints.down("sm")]: {
-        padding: "5px",
+        padding: "5px !important",
       },
     },
   },
@@ -43,10 +43,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   buttonGroup: {
-    width: "150px",
+    width: "150px !important",
     [theme.breakpoints.down("sm")]: {
-      width: "15px",
-      flexDirection: "column",
+      width: "25px !important",
+      flexDirection: "column !important",
     },
   },
   removeButton: {
@@ -99,6 +99,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "30px",
     color: "#154360",
     fontWeight: 500,
+    margin: "30px 0px",
     [theme.breakpoints.down("sm")]: {
       fontSize: "17px",
     },
@@ -120,14 +121,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   forMobileView: {
-    display: "none",
+    display: "none !important",
     [theme.breakpoints.down("sm")]: {
-      display: "block",
+      display: "block !important",
     },
   },
   forOtherView: {
     [theme.breakpoints.down("sm")]: {
-      display: "none",
+      display: "none !important",
     },
   },
   containerStyle: {
@@ -321,7 +322,7 @@ const CartItems = () => {
                       >
                         <TableCell className={classes.imgDiv}>
                           <img
-                            src={row.img}
+                            src={row.img[0]}
                             alt=""
                             className={classes.cartImg}
                           />
@@ -406,7 +407,7 @@ const CartItems = () => {
                             color="secondary"
                             onClick={() => removeDialog(row.id)}
                           >
-                            <DeleteIcon />
+                            <DeleteIcon style={{ color: "#95A5A6" }} />
                           </IconButton>
                         </TableCell>
                       </TableRow>
@@ -426,7 +427,7 @@ const CartItems = () => {
               }}
               color="primary"
               component={Link}
-              to="/"
+              to="/products"
               startIcon={<KeyboardBackspaceIcon fontSize="large" />}
             >
               Continue Shopping

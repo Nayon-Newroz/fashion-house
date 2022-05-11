@@ -28,14 +28,20 @@ import MyDrawer from "./MyDrawer";
 
 const useStyles = makeStyles((theme) => ({
   searchButtonStyle: {
-    background: "#F5B041",
+    background: "#F5B041 !important",
     borderRadius: "3px",
     position: "relative",
     left: "2px",
     width: "90px",
-    borderRadius: "25px",
+    borderRadius: "25px !important",
     [theme.breakpoints.down("lg")]: {
       width: "60px",
+    },
+  },
+  drawerButtonShow: {
+    display: "none",
+    [theme.breakpoints.down("md")]: {
+      display: "block",
     },
   },
 }));
@@ -147,12 +153,12 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }} style={{ maxWidth: "1920px" }}>
+    <Box sx={{ flexGrow: 1 }} style={{ maxWidth: "1920px", margin: "auto" }}>
       <AppBar
         position="static"
         style={{
           background: "#fff",
-          boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
+          boxShadow: "none",
         }}
       >
         <Toolbar>
@@ -166,7 +172,9 @@ export default function PrimarySearchAppBar() {
           >
             <FlashOnIcon color="primary" />
           </IconButton> */}
-          <MyDrawer />
+          <div className={classes.drawerButtonShow}>
+            <MyDrawer />{" "}
+          </div>
           <Typography
             variant="h4"
             noWrap

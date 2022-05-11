@@ -9,11 +9,15 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Layout = () => {
   const theme = useTheme();
-  let location = useLocation(); 
+  let location = useLocation();
 
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   console.log("matches", matches);
-  if (location.pathname === "/") {
+  if (
+    location.pathname === "/" ||
+    location.pathname === "/test" ||
+    location.pathname === "/test2"
+  ) {
     return (
       <>
         <Navigation />
@@ -29,21 +33,39 @@ const Layout = () => {
             top: 0,
             width: "100%",
             zIndex: 100,
+            background: "#fff",
+            boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
           }}
         >
           <AppBar />
         </div>
-        <div style={{ marginTop: "10px" }}>
+        <div
+          style={{
+            marginTop: "10px",
+            maxWidth: "1920px",
+            margin: "10px auto 0px",
+          }}
+        >
           <Grid container>
+            {location.pathname === "/products" && (
+              <Grid
+                item
+                xs={2.5}
+                md={2.5}
+                lg={2.5}
+                xl={2}
+                style={{ display: matches ? "none" : "" }}
+              >
+                <Sidebar />
+              </Grid>
+            )}
             <Grid
               item
-              xs={2.5}
-              md={2.5}
-              style={{ display: matches ? "none" : "" }}
+              xs={12}
+              md={location.pathname === "/products" ? 9.5 : 12}
+              lg={location.pathname === "/products" ? 9.5 : 12}
+              xl={location.pathname === "/products" ? 10 : 12}
             >
-              <Sidebar />
-            </Grid>
-            <Grid item xs={12} md={9.5}>
               <Navigation />
             </Grid>
           </Grid>

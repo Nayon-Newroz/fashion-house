@@ -1,5 +1,11 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
 body {
-  background: #E5E7E9;
+  background: #e5e7e9;
 }
 /* .App {
   text-align: center;

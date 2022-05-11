@@ -35,7 +35,6 @@ const theme = createTheme({
       // dark: will be calculated from palette.primary.main,
       contrastText: "#fff",
     },
-     
   },
   typography: {
     fontFamily: [
@@ -51,26 +50,26 @@ const theme = createTheme({
 function App() {
   return (
     <>
-      <Container maxWidth="xl" style={{ padding: 0 }}>
-        <Router>
-          <ThemeProvider theme={theme}>
-            <SnackbarProvider
-              maxSnack={1}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              TransitionComponent={Slide}
-            >
-              <CartContextProvider>
-                <Layout />
-                {/* <Navigation /> */}
-                {/* <Home /> */}
-              </CartContextProvider>
-            </SnackbarProvider>
-          </ThemeProvider>
-        </Router>
-      </Container>
+    
+      <Router>
+        <ThemeProvider theme={theme}>
+          <SnackbarProvider
+            maxSnack={1}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            TransitionComponent={Slide}
+          >
+            <CartContextProvider>
+              <Layout />
+              {/* <Navigation /> */}
+              {/* <Home /> */}
+            </CartContextProvider>
+          </SnackbarProvider>
+        </ThemeProvider>
+      </Router>
+      {/* </Container> */}
     </>
   );
 }

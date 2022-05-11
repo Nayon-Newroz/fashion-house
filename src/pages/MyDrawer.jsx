@@ -13,10 +13,10 @@ import { useLocation } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   menuButtonStyle: {
     color: "white",
-    fontSize: "60px",
-    [theme.breakpoints.down("sm")]: {
+    fontSize: "60px !important",
+    [theme.breakpoints.down("md")]: {
       color: "#154360",
-      fontSize: "40px",
+      fontSize: "40px !important",
     },
   },
   listItemStyle: {
@@ -123,7 +123,7 @@ export default function MyDrawer() {
           <Button onClick={toggleDrawer(anchor, true)}>
             <MenuIcon
               className={classes.menuButtonStyle}
-              style={{ color: location.pathname === "/" ? "#fff" : "" }}
+              style={{ color: location.pathname === "/" ? "#fff" : "none" }}
             />
           </Button>
           <Drawer
