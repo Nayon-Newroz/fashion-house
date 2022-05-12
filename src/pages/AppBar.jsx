@@ -25,6 +25,7 @@ import { makeStyles } from "@mui/styles";
 import { CartContext } from "../context/CartContext";
 import { useHistory } from "react-router-dom";
 import MyDrawer from "./MyDrawer";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 
 const useStyles = makeStyles((theme) => ({
   searchButtonStyle: {
@@ -48,13 +49,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
-  const { addList, list } = useContext(CartContext);
   let history = useHistory();
+  const { addList, list } = useContext(CartContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const LightTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.white,
+      color: "rgba(0, 0, 0, 0.87)",
+      boxShadow: theme.shadows[1],
+      fontSize: 14,
+    },
+  }));
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -228,36 +240,42 @@ export default function PrimarySearchAppBar() {
           </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-              onClick={() => history.push("/cart")}
-            >
-              <Badge badgeContent={list.length} color="primary">
-                <ShoppingCartIcon color="info" />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={0} color="primary">
-                <NotificationsIcon color="info" />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle color="info" />
-            </IconButton>
+            <LightTooltip title="Your Cart" placement="top">
+              <IconButton
+                size="large"
+                aria-label="show 4 new mails"
+                color="inherit"
+                onClick={() => history.push("/cart")}
+              >
+                <Badge badgeContent={list.length} color="primary">
+                  <ShoppingCartIcon color="info" />
+                </Badge>
+              </IconButton>
+            </LightTooltip>
+            <LightTooltip title="Notifications" placement="top">
+              <IconButton
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <Badge badgeContent={0} color="primary">
+                  <NotificationsIcon color="info" />
+                </Badge>
+              </IconButton>
+            </LightTooltip>
+            {/* <LightTooltip title="User Profile" placement="top"> */}
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle color="info" />
+              </IconButton>
+            {/* </LightTooltip> */}
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             {/* <IconButton

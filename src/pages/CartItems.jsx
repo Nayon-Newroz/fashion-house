@@ -30,6 +30,57 @@ import axios from "axios";
 
 import { useSnackbar } from "notistack";
 const useStyles = makeStyles((theme) => ({
+  cardHolder: {
+    display: "flex",
+    flexDirection: "colunm",
+    alignItems: "center",
+    height: "85vh",
+    [theme.breakpoints.down("sm")]: {
+      height: "75vh",
+    },
+  },
+  card: {
+    // width: "85%",
+    margin: "auto",
+    background: "#fff",
+    padding: "20px 60px",
+    borderRadius: "10px",
+    boxSizing: "border-box",
+    textAlign: "center",
+    // boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
+
+    [theme.breakpoints.down("sm")]: {
+      padding: "20px 20px",
+    },
+  },
+  cardTitle: {
+    fontSize: "30px",
+    color: "#154360",
+    fontWeight: 500,
+    margin: "30px 0px",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "17px",
+    },
+  },
+  cardText: {
+    fontSize: "25px",
+    color: "#154360",
+    fontWeight: 500,
+    margin: "20px 0px",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "12px",
+    },
+  },
+  cardButton: {
+    textTransform: "none !important",
+    fontSize: "16px !important",
+    borderRadius: "25px !important",
+    marginTop: "20px !important",
+    marginBottom: "20px",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "8px !important",
+    },
+  },
   tableBodyStyle: {
     "& td": {
       [theme.breakpoints.down("sm")]: {
@@ -275,156 +326,17 @@ const CartItems = () => {
   // };
   return (
     <div>
-      <Container maxWidth="lg" className={classes.containerStyle}>
-        <Grid container>
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            md={9}
-            style={{ padding: "20px", background: "#fff" }}
-          >
-            <Grid container>
-              <Grid item xs={6} sm={6} md={6}>
-                <p className={classes.titleStyle2}>Shopping Cart</p>
-              </Grid>
-              <Grid item xs={6} sm={6} md={6}>
-                <p
-                  style={{
-                    textAlign: "right",
-                  }}
-                  className={classes.titleStyle2}
-                >
-                  {list.length} Item{list.length > 1 && "s"}
-                </p>
-              </Grid>
-            </Grid>
-            <TableContainer component={Paper}>
-              <Table aria-label="simple table">
-                <TableHead className={classes.forOtherView}>
-                  <TableRow>
-                    <TableCell>Product Details</TableCell>
-                    <TableCell>Title</TableCell>
-                    <TableCell align="center">Quantity</TableCell>
-                    <TableCell align="right">Unit Price</TableCell>
-                    <TableCell align="right">Total</TableCell>
-                    <TableCell align="right">Remove</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody className={classes.tableBodyStyle}>
-                  {list &&
-                    list.map((row, i) => (
-                      <TableRow
-                        key={i}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell className={classes.imgDiv}>
-                          <img
-                            src={row.img[0]}
-                            alt=""
-                            className={classes.cartImg}
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <p className={classes.titleStyle}> {row.title}</p>
-                          <div className={classes.forMobileView}>
-                            <p className={classes.priceStyle}>
-                              Tk. {row.price}{" "}
-                            </p>
-                          </div>
-                        </TableCell>
-                        <TableCell>
-                          {" "}
-                          <Grid
-                            container
-                            justifyContent="center"
-                            alignItems="center"
-                            className={classes.buttonGroup}
-                          >
-                            <Grid className={classes.quantityControler}>
-                              <IconButton
-                                onClick={() =>
-                                  decreaseQuantity(row.quantity, row)
-                                }
-                                className={classes.iconButton}
-                              >
-                                <RemoveIcon className={classes.iconStyle} />
-                              </IconButton>
-                            </Grid>
-                            <Grid className={classes.quantityControler}>
-                              {" "}
-                              <TextField
-                                id="outlined-basic"
-                                className={classes.input}
-                                variant="outlined"
-                                size="small"
-                                // style={{ width: "50px" }}
-                                type="number"
-                                value={row.quantity}
-                                onChange={(e) => {
-                                  modifyArray(e.target.value, row);
-                                }}
-                              />
-                            </Grid>
-                            <Grid className={classes.quantityControler}>
-                              <IconButton
-                                aria-label="AddIcon"
-                                onClick={() =>
-                                  increaseQuantity(row.quantity, row)
-                                }
-                                className={classes.iconButton}
-                              >
-                                <AddIcon className={classes.iconStyle} />
-                              </IconButton>
-                            </Grid>
-                          </Grid>
-                          {/* <div className={classes.forMobileView}>
-                            <br />
-                            {row.quantity * row.price}
-                          </div> */}
-                        </TableCell>
-                        <TableCell
-                          align="right"
-                          className={classes.forOtherView}
-                        >
-                          {row.price}
-                        </TableCell>
-                        <TableCell
-                          align="right"
-                          className={classes.forOtherView}
-                        >
-                          {row.quantity * row.price}
-                        </TableCell>
-                        <TableCell
-                          align="right"
-                          // className={classes.forOtherView}
-                          className={classes.removeButton}
-                        >
-                          <IconButton
-                            aria-label="delete"
-                            color="secondary"
-                            onClick={() => removeDialog(row.id)}
-                          >
-                            <DeleteIcon style={{ color: "#95A5A6" }} />
-                          </IconButton>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <br />
+      {list?.length < 1 ? (
+        <div className={classes.cardHolder}>
+          <div className={classes.card}>
+            <p className={classes.cardTitle}>Shopping Cart</p>
+            <p className={classes.cardText}>
+              You have no items in your shopping cart.
+            </p>
             <Button
               variant="contained"
               disableElevation
-              style={{
-                background: "none",
-                textTransform: "none",
-                fontSize: "16px",
-                color: "#154360",
-              }}
+              className={classes.cardButton}
               color="primary"
               component={Link}
               to="/products"
@@ -432,177 +344,340 @@ const CartItems = () => {
             >
               Continue Shopping
             </Button>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            md={3}
-            style={{ padding: "20px", background: "#f3f3f3" }}
-          >
-            <Grid container>
-              <Grid item md={12}>
-                <p className={classes.titleStyle2}>Order Summary</p>
+          </div>
+        </div>
+      ) : (
+        <Container maxWidth="lg" className={classes.containerStyle}>
+          <Grid container>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={9}
+              style={{ padding: "20px", background: "#fff" }}
+            >
+              <Grid container>
+                <Grid item xs={6} sm={6} md={6}>
+                  <p className={classes.titleStyle2}>Shopping Cart</p>
+                </Grid>
+                <Grid item xs={6} sm={6} md={6}>
+                  <p
+                    style={{
+                      textAlign: "right",
+                    }}
+                    className={classes.titleStyle2}
+                  >
+                    {list.length} Item{list.length > 1 && "s"}
+                  </p>
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container>
-              <Grid item xs={6}>
-                <p
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: 500,
-                  }}
-                >
-                  Item{list.length > 1 && "s"} {list.length}
-                </p>
-              </Grid>
-              <Grid item xs={6}>
-                <p
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: 500,
-                    textAlign: "right",
-                  }}
-                >
-                  TK. {productTotalPrice}
-                </p>
-              </Grid>
-            </Grid>
-            <div>
-              <p
-                style={{
-                  fontSize: "14px",
-                  fontWeight: 500,
-                }}
-              >
-                Shipping Address
-              </p>
-              <TextField
-                style={{ marginBottom: "20px" }}
-                id="address"
-                size="small"
-                fullWidth
-                multiline
-                rows={4}
-                variant="outlined"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-            </div>
-            <div>
-              <p
-                style={{
-                  fontSize: "14px",
-                  fontWeight: 500,
-                }}
-              >
-                Promo Code
-              </p>
-              <TextField
-                style={{ marginBottom: "20px" }}
-                id="promo-code"
-                size="small"
-                fullWidth
-                variant="outlined"
-                value={promoCode}
-                onChange={(e) => setPromoCode(e.target.value)}
-              />
+
+              <TableContainer component={Paper}>
+                <Table aria-label="simple table">
+                  <TableHead className={classes.forOtherView}>
+                    <TableRow>
+                      <TableCell>Product Details</TableCell>
+                      <TableCell>Title</TableCell>
+                      <TableCell align="center">Quantity</TableCell>
+                      <TableCell align="right">Unit Price</TableCell>
+                      <TableCell align="right">Total</TableCell>
+                      <TableCell align="right">Remove</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody className={classes.tableBodyStyle}>
+                    {list &&
+                      list.map((row, i) => (
+                        <TableRow
+                          key={i}
+                          sx={{
+                            "&:last-child td, &:last-child th": { border: 0 },
+                          }}
+                        >
+                          <TableCell className={classes.imgDiv}>
+                            <img
+                              src={row.img[0]}
+                              alt=""
+                              className={classes.cartImg}
+                            />
+                          </TableCell>
+                          <TableCell>
+                            <p className={classes.titleStyle}> {row.title}</p>
+                            <div className={classes.forMobileView}>
+                              <p className={classes.priceStyle}>
+                                Tk. {row.price}{" "}
+                              </p>
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            {" "}
+                            <Grid
+                              container
+                              justifyContent="center"
+                              alignItems="center"
+                              className={classes.buttonGroup}
+                            >
+                              <Grid className={classes.quantityControler}>
+                                <IconButton
+                                  onClick={() =>
+                                    decreaseQuantity(row.quantity, row)
+                                  }
+                                  className={classes.iconButton}
+                                >
+                                  <RemoveIcon className={classes.iconStyle} />
+                                </IconButton>
+                              </Grid>
+                              <Grid className={classes.quantityControler}>
+                                {" "}
+                                <TextField
+                                  id="outlined-basic"
+                                  className={classes.input}
+                                  variant="outlined"
+                                  size="small"
+                                  // style={{ width: "50px" }}
+                                  type="number"
+                                  value={row.quantity}
+                                  onChange={(e) => {
+                                    modifyArray(e.target.value, row);
+                                  }}
+                                />
+                              </Grid>
+                              <Grid className={classes.quantityControler}>
+                                <IconButton
+                                  aria-label="AddIcon"
+                                  onClick={() =>
+                                    increaseQuantity(row.quantity, row)
+                                  }
+                                  className={classes.iconButton}
+                                >
+                                  <AddIcon className={classes.iconStyle} />
+                                </IconButton>
+                              </Grid>
+                            </Grid>
+                            {/* <div className={classes.forMobileView}>
+                            <br />
+                            {row.quantity * row.price}
+                          </div> */}
+                          </TableCell>
+                          <TableCell
+                            align="right"
+                            className={classes.forOtherView}
+                          >
+                            {row.price}
+                          </TableCell>
+                          <TableCell
+                            align="right"
+                            className={classes.forOtherView}
+                          >
+                            {row.quantity * row.price}
+                          </TableCell>
+                          <TableCell
+                            align="right"
+                            // className={classes.forOtherView}
+                            className={classes.removeButton}
+                          >
+                            <IconButton
+                              aria-label="delete"
+                              color="secondary"
+                              onClick={() => removeDialog(row.id)}
+                            >
+                              <DeleteIcon style={{ color: "#95A5A6" }} />
+                            </IconButton>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+
+              <br />
               <Button
                 variant="contained"
                 disableElevation
-                color="secondary"
                 style={{
+                  background: "none",
                   textTransform: "none",
                   fontSize: "16px",
-                  width: "180px",
-                  textAlign: "center",
+                  color: "#154360",
                 }}
+                color="primary"
+                component={Link}
+                to="/products"
+                startIcon={<KeyboardBackspaceIcon fontSize="large" />}
               >
-                Apply
+                Continue Shopping
               </Button>
-            </div>
-            <br />
-            <hr />
-            <div>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={3}
+              style={{ padding: "20px", background: "#f3f3f3" }}
+            >
+              <Grid container>
+                <Grid item md={12}>
+                  <p className={classes.titleStyle2}>Order Summary</p>
+                </Grid>
+              </Grid>
               <Grid container>
                 <Grid item xs={6}>
                   <p
                     style={{
-                      fontSize: "18px",
+                      fontSize: "14px",
                       fontWeight: 500,
-                      color: "#154360",
                     }}
                   >
-                    Total Cost
+                    Item{list.length > 1 && "s"} {list.length}
                   </p>
                 </Grid>
                 <Grid item xs={6}>
                   <p
                     style={{
-                      fontSize: "18px",
+                      fontSize: "14px",
                       fontWeight: 500,
                       textAlign: "right",
-                      color: "#154360",
                     }}
                   >
-                    Tk. {productTotalPrice}
+                    TK. {productTotalPrice}
                   </p>
                 </Grid>
               </Grid>
-              <Button
-                fullWidth
-                variant="contained"
-                disableElevation
-                style={{
-                  textTransform: "none",
-                  fontSize: "16px",
-                  textAlign: "center",
-                  marginTop: "6px",
-                }}
-                // onClick={submit}
-              >
-                {" "}
-                {loading && (
-                  <CircularProgress
-                    size={18}
-                    style={{
-                      color: "#fff",
-                    }}
-                  />
-                )}{" "}
-                CheckOut
-              </Button>
-            </div>
+              <div>
+                <p
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: 500,
+                  }}
+                >
+                  Shipping Address
+                </p>
+                <TextField
+                  style={{ marginBottom: "20px" }}
+                  id="address"
+                  size="small"
+                  fullWidth
+                  multiline
+                  rows={4}
+                  variant="outlined"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+              </div>
+              <div>
+                <p
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: 500,
+                  }}
+                >
+                  Promo Code
+                </p>
+                <TextField
+                  style={{ marginBottom: "20px" }}
+                  id="promo-code"
+                  size="small"
+                  fullWidth
+                  variant="outlined"
+                  value={promoCode}
+                  onChange={(e) => setPromoCode(e.target.value)}
+                />
+                <Button
+                  variant="contained"
+                  disableElevation
+                  color="secondary"
+                  style={{
+                    textTransform: "none",
+                    fontSize: "16px",
+                    width: "180px",
+                    textAlign: "center",
+                  }}
+                >
+                  Apply
+                </Button>
+              </div>
+              <br />
+              <hr />
+              <div>
+                <Grid container>
+                  <Grid item xs={6}>
+                    <p
+                      style={{
+                        fontSize: "18px",
+                        fontWeight: 500,
+                        color: "#154360",
+                      }}
+                    >
+                      Total Cost
+                    </p>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <p
+                      style={{
+                        fontSize: "18px",
+                        fontWeight: 500,
+                        textAlign: "right",
+                        color: "#154360",
+                      }}
+                    >
+                      Tk. {productTotalPrice}
+                    </p>
+                  </Grid>
+                </Grid>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  disableElevation
+                  style={{
+                    textTransform: "none",
+                    fontSize: "16px",
+                    textAlign: "center",
+                    marginTop: "6px",
+                  }}
+                  // onClick={submit}
+                >
+                  {" "}
+                  {loading && (
+                    <CircularProgress
+                      size={18}
+                      style={{
+                        color: "#fff",
+                      }}
+                    />
+                  )}{" "}
+                  CheckOut
+                </Button>
+              </div>
+            </Grid>
           </Grid>
-        </Grid>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">{"Remove Alart?"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Are you sure you want to remove this Item ?
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} style={{ color: "#AAB7B8" }}>
-              Cancel
-            </Button>
-            <Button
-              autoFocus
-              onClick={() => {
-                removelist(removeItemId);
-                handleClose();
-              }}
-            >
-              Confirm
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </Container>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">{"Remove Alart?"}</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Are you sure you want to remove this Item ?
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} style={{ color: "#AAB7B8" }}>
+                Cancel
+              </Button>
+              <Button
+                autoFocus
+                onClick={() => {
+                  removelist(removeItemId);
+                  handleClose();
+                }}
+              >
+                Confirm
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </Container>
+      )}
     </div>
   );
 };

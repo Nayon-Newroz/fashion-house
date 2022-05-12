@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -38,6 +38,8 @@ import Ipad from "../assets/images/Ipad.jpg";
 import Iphone from "../assets/images/Iphone.png";
 import { Link } from "react-router-dom";
 import Container from "@mui/material/Container";
+import { CartContext } from "../context/CartContext";
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   main: {
     [theme.breakpoints.down("sm")]: {
@@ -160,21 +162,35 @@ const useStyles = makeStyles((theme) => ({
       transform: "scale(1.05)",
     },
     [theme.breakpoints.down("sm")]: {
-      width: "70%",
+      // width: "70%",
     },
   },
   cardButton: {
     textTransform: "none !important",
     borderRadius: "25px !important",
     padding: "5px 20px",
-    // fontSize: "16px",
-    // margin: "auto",
-    // display: "block",
-    // textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "12px !important",
+      padding: "2px 20px !important",
+    },
   },
   cardTitle: {
-    marginBottom: "5px",
+    marginBottom: "20px",
     color: "#154360",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "12px",
+      marginBottom: "10px",
+    },
+  },
+  cardImage: {
+    width: "150px",
+    height: "150px",
+    display: "block",
+    margin: "auto",
+    [theme.breakpoints.down("sm")]: {
+      width: "120px",
+      height: "120px",
+    },
   },
   brStyle: {
     // display:'none'
@@ -183,7 +199,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  let history = useHistory();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const { addList, list } = useContext(CartContext);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -193,6 +211,18 @@ const Home = () => {
   };
 
   const menuCatrgory = [
+    { title: "MEN'S CLOTHING", image: "/images/men.png" },
+    { title: "WOMEN'S CLOTHING", image: "/images/women.png" },
+    { title: "KID'S CLOTHING", image: "/images/kid.png" },
+    { title: "Sports CLOTHING", image: "/images/sports.png" },
+    { title: "MEN'S CLOTHING", image: "/images/men.png" },
+    { title: "WOMEN'S CLOTHING", image: "/images/women.png" },
+    { title: "KID'S CLOTHING", image: "/images/kid.png" },
+    { title: "Sports CLOTHING", image: "/images/sports.png" },
+    { title: "MEN'S CLOTHING", image: "/images/men.png" },
+    { title: "WOMEN'S CLOTHING", image: "/images/women.png" },
+    { title: "KID'S CLOTHING", image: "/images/kid.png" },
+    { title: "Sports CLOTHING", image: "/images/sports.png" },
     { title: "MEN'S CLOTHING", image: "/images/men.png" },
     { title: "WOMEN'S CLOTHING", image: "/images/women.png" },
     { title: "KID'S CLOTHING", image: "/images/kid.png" },
@@ -315,7 +345,7 @@ const Home = () => {
                 />
               </FormControl>
             </Grid>
-            <Grid item>
+            <Grid item onClick={() => history.push("/cart")}>
               <Grid
                 container
                 spacing={1}
@@ -323,7 +353,7 @@ const Home = () => {
                 className={classes.appbarMenuItem}
               >
                 <Grid item>
-                  <Badge badgeContent={1} color="primary">
+                  <Badge badgeContent={list.length} color="primary">
                     <ShoppingCartIcon style={{ fontSize: "35px" }} />
                   </Badge>
                 </Grid>
@@ -372,7 +402,7 @@ const Home = () => {
                 </Typography>
               </div>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={3} onClick={() => history.push("/cart")}>
               <Grid
                 item
                 container
@@ -380,7 +410,7 @@ const Home = () => {
                 alignItems="center"
               >
                 <Grid item>
-                  <Badge badgeContent={1} color="primary">
+                  <Badge badgeContent={list.length} color="primary">
                     <ShoppingCartIcon
                       style={{ color: "#fff", fontSize: "30px" }}
                     />
@@ -466,28 +496,24 @@ const Home = () => {
         </Typography>
         <Container maxWidth="lg">
           <br />
-          <Grid container spacing={4}>
+          <Grid container spacing={{ xs: 1, sm: 2, md: 4 }}>
             {menuCatrgory.map((item, i) => (
-              <Grid item xs={12} sm={4} md={3} key={i}>
+              <Grid item xs={6} sm={4} md={3} key={i}>
                 <div className={classes.card}>
-                  <img
-                    src={item.image}
-                    alt=""
-                    height="150px"
-                    width="150px"
-                    style={{ display: "block", margin: "auto" }}
-                  />
+                  <img src={item.image} alt="" className={classes.cardImage} />
                   <h4 className={classes.cardTitle}>{item.title}</h4>
                   {/* <p className={classes.productDetail}>{item.des}</p>
 
                   <p className={classes.priceStyle}>Tk {item.price}</p> */}
-                  <br />
+
                   <Button
                     variant="contained"
                     // variant="outlined"
                     disableElevation
                     className={classes.cardButton}
                     // onClick={() => addNew(item)}
+                    component={Link}
+                    to="/products"
                   >
                     Visit Here
                   </Button>

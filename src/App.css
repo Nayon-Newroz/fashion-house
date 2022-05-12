@@ -7,6 +7,31 @@
 body {
   background: #e5e7e9;
 }
+*::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0.5);
+}
+*::-webkit-scrollbar-track {
+  /* background: rgb(175, 175, 175); */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #154360;
+  border-radius: 20px;
+  /* border: 1px solid red; */
+}
+::-moz-selection {
+  /* Code for Firefox */
+  color: rgb(105, 104, 104);
+  background: #fcd9a2;
+}
+
+::selection {
+  color: rgb(105, 104, 104);
+  background: #fcd9a2;
+}
 /* .App {
   text-align: center;
 }

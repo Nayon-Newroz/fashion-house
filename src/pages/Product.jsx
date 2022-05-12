@@ -7,7 +7,8 @@ import StarIcon from "@mui/icons-material/Star";
 import { useSnackbar } from "notistack";
 import mydata from "./Data";
 import { useHistory } from "react-router-dom";
-
+import { IconButton } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 const useStyles = makeStyles((theme) => ({
   card: {
     textAlign: "center",
@@ -36,15 +37,7 @@ const useStyles = makeStyles((theme) => ({
       width: "150px",
     },
   },
-  cardButton: {
-    textTransform: "none !important",
-    borderRadius: "25px !important",
-    padding: "5px 20px",
-    // fontSize: "16px",
-    // margin: "auto",
-    // display: "block",
-    // textAlign: "center",
-  },
+
   cardTitle: {
     marginBottom: "5px",
     color: "#154360",
@@ -60,6 +53,26 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "13px",
     color: "#839192",
     marginTop: 0,
+  },
+  cardButton: {
+    textTransform: "none !important",
+    // borderRadius: "25px !important",
+    padding: "5px 20px",
+    // fontSize: "16px",
+    // margin: "auto",
+    // display: "block",
+    // textAlign: "center",
+  },
+  cardButton2: {
+    textTransform: "none !important",
+    borderRadius: "25px !important",
+    padding: "5px 20px !important",
+    border: "1px solid #154360 !important",
+    color: "#154360 !important",
+    "&:hover": {
+      background: "#154360  !important",
+      color: "#fff !important",
+    },
   },
 }));
 
@@ -81,8 +94,6 @@ const Product = () => {
     });
   };
   const addNew = (item) => {
-   
-
     let checkList = list.filter((res) => res.id === item.id);
     if (checkList.length < 1) {
       addList(item);
@@ -99,7 +110,7 @@ const Product = () => {
           <Grid item xs={12} sm={4} md={3} lg={3} xl={2.4} key={i}>
             <div
               className={classes.card}
-              onClick={() => history.push(`/product/${item.id}`)}
+              // onClick={() => history.push(`/product/${item.id}`)}
             >
               <img
                 src={item.img[0]}
@@ -111,21 +122,44 @@ const Product = () => {
               <p className={classes.productDetail}>{item.des}</p>
               <Grid container justifyContent="center" alignItems="center">
                 <StarIcon fontSize="12px" color="primary" />
+                {/* &nbsp;&nbsp; */}
                 <StarIcon fontSize="12px" color="primary" />
+                {/* &nbsp;&nbsp; */}
                 <StarIcon fontSize="12px" color="primary" />
+                {/* &nbsp;&nbsp; */}
                 <StarIcon fontSize="12px" color="primary" />
+                {/* &nbsp;&nbsp; */}
                 <StarIcon fontSize="12px" color="primary" />
               </Grid>
-              <p className={classes.priceStyle}>Tk {item.price}</p>
+              <p className={classes.priceStyle}>Price: Tk {item.price}</p>
               <Button
                 variant="contained"
                 // variant="outlined"
                 disableElevation
                 className={classes.cardButton}
-                onClick={() => addNew(item)}
+                // onClick={() => addNew(item)}
+                onClick={() => history.push(`/product/${item.id}`)}
               >
-                Add To Cart
+                View Details
               </Button>
+              &nbsp;
+              <Button
+                variant="contained"
+                disableElevation
+                onClick={() => addNew(item)}
+                // startIcon={<ShoppingCartIcon />}
+                // color="info"
+              >
+                <ShoppingCartIcon />
+              </Button>
+              {/* <Button
+                // className={classes.cardButton2}
+                onClick={() => addNew(item)}
+                // startIcon={<ShoppingCartIcon />}
+                color="info"
+              >
+                Add to Cart
+              </Button> */}
             </div>
           </Grid>
         ))}

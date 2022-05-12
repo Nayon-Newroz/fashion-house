@@ -12,6 +12,10 @@ const useStyles = makeStyles((theme) => ({
     background: "#fff",
     paddingTop: "10px",
     paddingLeft: "10px",
+    position: "sticky",
+    top: 75,
+    height: "calc(100vh - 90px)",
+    overflowY: "scroll",
   },
   categoryNameStyle: {
     fontSize: "16px",

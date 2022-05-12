@@ -67,8 +67,8 @@ const useStyles = makeStyles((theme) => ({
   },
   cardButton: {
     textTransform: "none !important",
-    borderRadius: "25px !important",
-    padding: "5px 20px",
+    // borderRadius: "25px !important",
+    padding: "5px 60px !important",
     // fontSize: "16px",
     // margin: "auto",
     // display: "block",
@@ -145,7 +145,6 @@ const ProductDetails = () => {
     });
   };
   const addNew = (item) => {
-    
     let checkList = list.filter((res) => res.id === item.id);
     if (checkList.length < 1) {
       addList(item);
