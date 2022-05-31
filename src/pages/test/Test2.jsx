@@ -1,6 +1,6 @@
 import React from "react";
 import ReactImageZoom from "react-image-zoom";
-import Desktop from "../assets/images/Desktop.jpg";
+import Desktop from "../../assets/images/Desktop.jpg";
 const Test2 = () => {
   const props = {
     width: 400,

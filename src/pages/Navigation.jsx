@@ -5,8 +5,8 @@ import Product from "./Product";
 import Message from "./Message";
 import Home from "./Home";
 import ProductDetails from "./ProductDetails";
-import Test from "./Test";
-import Test2 from "./Test2";
+import Test from "./test/Test";
+import Test2 from "./test/Test2";
 
 const Navigation = () => {
   return (
