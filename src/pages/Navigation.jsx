@@ -7,6 +7,7 @@ import Home from "./Home";
 import ProductDetails from "./ProductDetails";
 import Test from "./test/Test";
 import Test2 from "./test/Test2";
+import Test3 from "./test/Test3";
 
 const Navigation = () => {
   return (
@@ -17,6 +18,9 @@ const Navigation = () => {
         </Route>
         <Route path="/test2">
           <Test2 />
+        </Route>
+        <Route path="/test3">
+          <Test3 />
         </Route>
         <Route path="/message">
           <Message />
